@@ -10,11 +10,11 @@ const configs = {
   },
   db: {
     development: {
-      dialect: "postgres",
-      host: "",
-      username: "",
-      password: "",
-      database: "",
+      dialect: 'postgres',
+      host: process.env.DB_HOST,
+      username: 'postgres',
+      password: process.env.DB_PASS,
+      database: process.env.DB,
       define: {
         timestamps: true, //? Va a utilizar por defecto el created_at y updated_at
         underscored: true, //? Convierte camelCase en snake_case en todos los nombres y atributos de mi modelo

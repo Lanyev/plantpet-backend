@@ -1,34 +1,49 @@
+const Categories = require( '../models/categories.models' )
+
 const table = 'categories'
 
 const findAllCategories = async (  ) => {
-    return await table 
+    const data = await Categories.findAll({
+        where:{
+            state: (this.state  != 1)
+        }
+    })
+    return data
 }
 
 const findCategoryById = async ( id ) => {
-    return await table 
+    const data = await Categories.findOne({
+        where:{
+            id
+        }
+    })
+    return data
 }
 
-const createCategory = async ( id, categoryObj ) => {
-    return await table 
+const createCategory = async ( categoryObj ) => {
+    const data = Categories.create(categoryObj)
+
+    return data
 }
 
-const actualizeCategory =  async ( id, categoryObj ) => {
-    return await table 
-}
-
-const actualizePartialCategory = async ( id, categoryObj ) => {
-    return await table 
+const updateCategory =  async ( id, categoryObj ) => {
+    const data = Categories.update( categoryObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
 
 const deleteCategory = async ( id ) => {
-    return await table 
+    const data  = Categories.destroy( id )
+    return await data
 }
 
 module.exports = {
     findAllCategories,
     findCategoryById,
     createCategory,
-    actualizeCategory,
-    actualizePartialCategory,
+    updateCategory,
     deleteCategory
 }

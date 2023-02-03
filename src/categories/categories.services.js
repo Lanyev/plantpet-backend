@@ -7,32 +7,52 @@ const getAllCategories = (req, res) => {
 }
 
 const getCategoryById = (req, res) => {
-  categoriesController.findCategoryById()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  categoriesController.findCategoryById(id)
+    .then( data => data ?
+      res.status(200).json({data}):
+      res.status(404).json({message: "Category not found"}) 
+    )
     .catch( err => res.status(400).json(err) )
 }
 
 const postCategory = (req, res) => {
-  categoriesController.createCategory()
-    .then( data => res.status(201).json({data}) )
+  const categoryObj = req.body
+  categoriesController.createCategory(cateObj)
+    .then( data => res.status(201).json({data})
+    )
     .catch( err => res.status(400).json(err) )
 }
 
 const putCategory = (req, res) => {
-  categoriesController.actualizeCategory()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  const categoryObj = req.body
+  categoriesController.updateCategory( id, categoryObj )
+    .then( data =>  data ?
+      res.status(200).json({data}):
+      res.status(404).json({message: "Category not found"}) 
+    )
     .catch( err => res.status(400).json(err) )
 }
 
 const PatchCategory = (req, res) => {
-  categoriesController.actualizePartialCategory()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  const categoryObj = req.body
+  categoriesController.updateCategory( id, categoryObj )
+    .then( data => data ?
+      res.status(200).json({data}):
+      res.status(404).json({message: "Category not found"}) 
+    )
     .catch( err => res.status(400).json(err) )
 }
 
 const deleteCategory = (req, res) => {
-  categoriesController.deleteCategory()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  categoriesController.deleteCategory( id )
+    .then( data =>  data ?
+      res.status(200).json({data}):
+      res.status(404).json({message: "Category not found"}) 
+    )
     .catch( err => res.status(400).json(err) )
 }
 
