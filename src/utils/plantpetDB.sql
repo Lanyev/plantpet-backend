@@ -104,9 +104,12 @@ CREATE TABLE "purchases_detail" (
   "idPurchase" int NOT NULL,
   "idProduct" int NOT NULL,
   "sub_total" decimal NOT NULL,
+-- Aqui podria ir un quantity
   "state" bool DEFAULT true,
   "fecha_creacion" date NOT NULL
 );
+
+
 
 CREATE TABLE "sales_details" (
   "id" serial PRIMARY KEY,
