@@ -3,37 +3,56 @@ const customersController = require( './customers.controllers' )
 const getAllCustomers = (req, res) => {
   customersController.findAllCustomers()
     .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+    .catch( err => res.status(400).json(err) )
 }
 
 const getCustomerById = (req, res) => {
-  customersController.findCustomerById()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  customersController.findCustomerById(id)
+  .then( data => data ?
+    res.status(200).json(data):
+    res.status(404).json({message: "Customer not found"}) 
+  )
+    .catch( err => res.status(400).json(err) )
 }
 
 const postCustomer = (req, res) => {
-  customersController.createCustomer()
-    .then( data => res.status(201).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const customerObj = req.body
+  customersController.createCustomer(customerObj)
+    .then( data => res.status(201).json(data) )
+    .catch( err => res.status(400).json(err) )
 }
 
 const putCustomer = (req, res) => {
-  customersController.actualizeCustomer()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  const customerObj = req.body
+  customersController.updateCustomer( id, customerObj )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Customer not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const PatchCustomer = (req, res) => {
-  customersController.actualizePartialCustomer()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  const customerObj = req.body
+  customersController.updateCustomer( id, customerObj )
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Customer not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const deleteCustomer = (req, res) => {
-  customersController.deleteCustomer()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  customersController.deleteCustomer( id )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Customer not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 module.exports = {

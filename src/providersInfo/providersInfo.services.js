@@ -2,38 +2,58 @@ const providersInfoController = require( './providersInfo.controllers' )
 
 const getAllProvidersInfo = (req, res) => {
   providersInfoController.findAllProvidersInfo()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+    .then( data => res.status(200).json(data) )
+    .catch( err => res.status(400).json(err) )
 }
 
 const getProviderInfoById = (req, res) => {
-  providersInfoController.findProviderInfoById()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  providersInfoController.findProviderInfoById(id)
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider information not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const postProviderInfo = (req, res) => {
-  providersInfoController.createProviderInfo()
-    .then( data => res.status(201).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const providerInfoObj = req.body
+  providersInfoController.createProviderInfo(providerInfoObj)
+    .then( data => res.status(201).json(data)
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const putProviderInfo = (req, res) => {
-  providersInfoController.actualizeProviderInfo()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  const providerInfoObj = req.body
+  providersInfoController.actualizeProviderInfo( id, providerInfoObj )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider information not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const PatchProviderInfo = (req, res) => {
-  providersInfoController.actualizePartialProviderInfo()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  const providerInfoObj = req.body
+  providersInfoController.actualizePartialProviderInfo( id, providerInfoObj )
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider information not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const deleteProviderInfo = (req, res) => {
-  providersInfoController.deleteProviderInfo()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  providersInfoController.deleteProviderInfo( id )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider information not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 module.exports = {

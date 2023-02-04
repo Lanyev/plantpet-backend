@@ -1,34 +1,47 @@
-const table = "products";
+const {Products} = require( '../models/indexDB' )
 
-const findAllProducts = async () => {
-  return await table;
-};
+const findAllProducts = async (  ) => {
+    const data = await Products.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
+}
 
-const findProductById = async (id) => {
-  return await table;
-};
+const findProductById = async ( id ) => {
+    const data = await Products.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
+}
 
-const createProduct = async (id, productObj) => {
-  return await table;
-};
+const createProduct = async ( id, ProductObj ) => {
+    const data = Products.create(ProductObj)
+    return data
+}
 
-const actualizeProduct = async (id, productObj) => {
-  return await table;
-};
+const updateProduct = async ( id, ProductObj ) => {
+    const data = Products.update( ProductObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
+}
 
-const actualizePartialProduct = async (id, productObj) => {
-  return await table;
-};
-
-const deleteProduct = async (id) => {
-  return await table;
-};
+const deleteProduct = async ( id ) => {
+    const data  = Products.destroy( id )
+    return await data
+}
 
 module.exports = {
   findAllProducts,
   findProductById,
   createProduct,
-  actualizeProduct,
-  actualizePartialProduct,
+  updateProduct,
   deleteProduct,
 };

@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db/connection");
+const db = require("../utils/database");
 
 const Users = db.define("users", {
   id: {
@@ -10,6 +10,12 @@ const Users = db.define("users", {
   idRol: {
     type: DataTypes.INTEGER,
     allowNull: false,
+    references:{
+      model: "rols",
+      key: "id"
+    },
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE'
   },
   first_name: {
     type: DataTypes.STRING,
@@ -35,7 +41,7 @@ const Users = db.define("users", {
     type: DataTypes.BOOLEAN,
     allowNull: false,
     defaultValue: true,
-  },
+  }
 });
 
 module.exports = Users;

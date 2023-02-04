@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const db = require("../db/connection");
+const db = require("../utils/database");
 
 const CustomersInfo = db.define("customersInfo", {
   id: {
@@ -27,6 +27,11 @@ const CustomersInfo = db.define("customersInfo", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  state:{
+    type:DataTypes.BOOLEAN,
+    allowNull:false,
+    defaultValue:true
+  }
 });
 
 module.exports = CustomersInfo;

@@ -1,11 +1,9 @@
-const Categories = require( '../models/categories.models' )
-
-const table = 'categories'
+const {Categories} = require( '../models/indexDB' )
 
 const findAllCategories = async (  ) => {
     const data = await Categories.findAll({
         where:{
-            state: (this.state  != 1)
+            state: (this.state  != false)
         }
     })
     return data
@@ -14,7 +12,8 @@ const findAllCategories = async (  ) => {
 const findCategoryById = async ( id ) => {
     const data = await Categories.findOne({
         where:{
-            id
+            id,
+            state: (this.state  != false)
         }
     })
     return data
@@ -22,7 +21,6 @@ const findCategoryById = async ( id ) => {
 
 const createCategory = async ( categoryObj ) => {
     const data = Categories.create(categoryObj)
-
     return data
 }
 

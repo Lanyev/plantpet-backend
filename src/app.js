@@ -1,6 +1,7 @@
 const express = require('express')
 const db = require('./utils/database')
 const apiRouter = require( './api_v1/apiV1.router' )
+const path = require( 'path' )
 
 
 const app = express()
@@ -19,7 +20,8 @@ db.sync() //? Sincronizar nuesta DB con los modelos que tenemos definidos
 require('dotenv').config()
 
 app.get( '/', ( req, res ) => {
-    res.json( { message: "Welcome to PlantPet_Proyect by Julio Sanchez" })
+  const archivo = req.params.string
+  res.sendFile( 'D:\\plantpet-backend\\public\\pages\\index.html' )
 })
 
 app.use( "/api/v1", apiRouter )

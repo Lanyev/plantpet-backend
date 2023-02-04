@@ -1,34 +1,46 @@
-const table = 'permissions'
+const {Permissions} = require( '../models/indexDB' )
 
 const findAllPermissions = async (  ) => {
-    return await table 
+    const data = await Permissions.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
 const findPermissionById = async ( id ) => {
-    return await table 
+    const data = await Permissions.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
-const createPermission = async ( id, permissionObj ) => {
-    return await table 
+const createPermission = async ( permissionObj ) => {
+    const data = Permissions.create(permissionObj)
+    return data
 }
 
-const actualizePermission =  async ( id, categryObj ) => {
-    return await table 
+const updatePermission =  async ( id, permissionObj ) => {
+    const data = Permissions.update( permissionObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
-
-const actualizePartialPermission = async ( id, categryObj ) => {
-    return await table 
-}
-
 const deletePermission = async ( id ) => {
-    return await table 
+    const data  = Permissions.destroy( id )
+    return await data
 }
 
 module.exports = {
     findAllPermissions,
     findPermissionById,
     createPermission,
-    actualizePermission,
-    actualizePartialPermission,
+    updatePermission,
     deletePermission
 }

@@ -121,6 +121,3 @@ values
 --	( "idSale" , "idProduct" , sub_total, "created_at", "updated_at" )
 --values
 --	( 1, 1, 50.00, '02/01/2023' )
-	
-
-

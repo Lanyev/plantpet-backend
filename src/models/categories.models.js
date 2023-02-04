@@ -7,6 +7,10 @@ const Categories = db.define("categories", {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
+    references:{
+      model: "users",
+      key: "idRol"
+    }
   },
   name: {
     type: DataTypes.STRING,

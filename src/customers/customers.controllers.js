@@ -1,34 +1,53 @@
-const table = 'customers'
+const {Customers} = require( '../models/indexDB' )
 
 const findAllCustomers = async (  ) => {
-    return await table 
+    const data = await Customers.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
 const findCustomerById = async ( id ) => {
-    return await table 
+    const data = await Customers.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
-const createCustomer = async ( id, customerObj ) => {
-    return await table 
+const createCustomer = async ( customerObj ) => {
+    const data = Customers.create(customerObj)
+    return data
 }
 
-const actualizeCustomer =  async ( id, customerObj ) => {
-    return await table 
-}
-
-const actualizePartialCustomer = async ( id, customerObj ) => {
-    return await table 
+const updateCustomer =  async ( id, customerObj ) => {
+    const data = Customers.update( customerObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
 
 const deleteCustomer = async ( id ) => {
-    return await table 
+    const data  = Customers.destroy( id )
+    return await data
 }
 
 module.exports = {
     findAllCustomers,
     findCustomerById,
     createCustomer,
-    actualizeCustomer,
-    actualizePartialCustomer,
+    updateCustomer,
+    updateCustomer,
     deleteCustomer
 }
+
+
+
+
+
