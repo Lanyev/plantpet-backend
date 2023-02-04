@@ -1,11 +1,15 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db/connection");
 
-const Categories = db.define("categories", {
+const Permissions = db.define("permissions", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
+  },
+  idRol: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
   name: {
     type: DataTypes.STRING,
@@ -18,4 +22,4 @@ const Categories = db.define("categories", {
   },
 });
 
-module.exports = Categories;
+module.exports = Permissions;

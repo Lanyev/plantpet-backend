@@ -1,14 +1,26 @@
 const { DataTypes } = require("sequelize");
 const db = require("../db/connection");
 
-const Categories = db.define("categories", {
+const Purchases = db.define("purchases", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  name: {
+  idProvider: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  idUser: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  invoice: {
     type: DataTypes.STRING,
+    allowNull: false,
+  },
+  total_amount: {
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
   state: {
@@ -18,4 +30,4 @@ const Categories = db.define("categories", {
   },
 });
 
-module.exports = Categories;
+module.exports = Purchases;
