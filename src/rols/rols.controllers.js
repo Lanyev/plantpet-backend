@@ -1,34 +1,47 @@
-const table = 'rols'
+const {Rols} = require( '../models/indexDB' )
 
 const findAllRols = async (  ) => {
-    return await table 
+    const data = await Rols.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
 const findRolById = async ( id ) => {
-    return await table 
+    const data = await Rols.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
-const createRol = async ( id, rolObj ) => {
-    return await table 
+const createRol = async ( rolObj ) => {
+    const data = Rols.create(rolObj)
+    return data
 }
 
-const actualizeRol =  async ( id, rolObj ) => {
-    return await table 
-}
-
-const actualizePartialRol = async ( id, rolObj ) => {
-    return await table 
+const updateRol =  async ( id, rolObj ) => {
+    const data = Rols.update( rolObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
 
 const deleteRol = async ( id ) => {
-    return await table 
+    const data  = Rols.destroy( id )
+    return await data
 }
 
 module.exports = {
     findAllRols,
     findRolById,
     createRol,
-    actualizeRol,
-    actualizePartialRol,
+    updateRol,
     deleteRol
 }

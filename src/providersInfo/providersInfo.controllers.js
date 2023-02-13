@@ -1,23 +1,36 @@
-const table = 'prvidersInfo'
+const {ProvidersInfo} = require( '../models/indexDB' )
 
 const findAllProvidersInfo = async (  ) => {
-    return await table 
+    const data = await ProvidersInfo.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
 const findProviderInfoById = async ( id ) => {
-    return await table 
+    const data = await ProvidersInfo.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
-const createProviderInfo = async ( id, providerInfoObj ) => {
-    return await table 
+const createProviderInfo = async ( providerInfoObj ) => {
+    const data = ProvidersInfo.create(providerInfoObj)
+    return data
 }
 
-const actualizeProviderInfo =  async ( id, providerInfoObj ) => {
-    return await table 
-}
-
-const actualizePartialProviderInfo = async ( id, providerInfoObj ) => {
-    return await table 
+const updateProviderInfo =  async ( id, providerInfoObj ) => {
+    const data = ProvidersInfo.update( providerInfoObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
 
 const deleteProviderInfo = async ( id ) => {
@@ -28,7 +41,6 @@ module.exports = {
     findAllProvidersInfo,
     findProviderInfoById,
     createProviderInfo,
-    actualizeProviderInfo,
-    actualizePartialProviderInfo,
+    updateProviderInfo,
     deleteProviderInfo
 }

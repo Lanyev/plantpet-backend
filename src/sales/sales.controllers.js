@@ -1,34 +1,47 @@
-const table = 'sales'
+const {Sales} = require( '../models/indexDB' )
 
 const findAllSales = async (  ) => {
-    return await table 
+    const data = await Sales.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
 const findSaleById = async ( id ) => {
-    return await table 
+    const data = await Sales.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
-const createSale = async ( id, saleObj ) => {
-    return await table 
+const createSale = async ( saleObj ) => {
+    const data = Sales.create(saleObj)
+    return data
 }
 
-const actualizeSale =  async ( id, saleObj ) => {
-    return await table 
-}
-
-const actualizePartialSale = async ( id, saleObj ) => {
-    return await table 
+const updateSale =  async ( id, saleObj ) => {
+    const data = Sales.update( saleObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
 
 const deleteSale = async ( id ) => {
-    return await table 
+    const data  = Sales.destroy( id )
+    return await data
 }
 
 module.exports = {
     findAllSales,
     findSaleById,
     createSale,
-    actualizeSale,
-    actualizePartialSale,
+    updateSale,
     deleteSale
 }

@@ -1,18 +1,22 @@
 const { DataTypes } = require("sequelize");
 const db = require("../utils/database");
 
-const Providers = db.define("providers", {
+const SalesDetail = db.define("salesDetails", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  codigo: {
-    type: DataTypes.STRING,
+  idSale: {
+    type: DataTypes.INTEGER,
     allowNull: false,
   },
-  name: {
-    type: DataTypes.STRING,
+  idProduct: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  sub_total: {
+    type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
   state: {
@@ -22,4 +26,4 @@ const Providers = db.define("providers", {
   },
 });
 
-module.exports = Providers;
+module.exports = SalesDetail;

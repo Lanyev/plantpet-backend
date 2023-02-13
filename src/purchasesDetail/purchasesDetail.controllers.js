@@ -1,34 +1,47 @@
-const table = 'purchasesDetail'
+const {PurchasesDetail} = require( '../models/indexDB' )
 
 const findAllPurchasesDetail = async (  ) => {
-    return await table 
+    const data = await PurchasesDetail.findAll({
+        where:{
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
 const findPurchaseDetailById = async ( id ) => {
-    return await table 
+    const data = await PurchasesDetail.findOne({
+        where:{
+            id,
+            state: (this.state  != false)
+        }
+    })
+    return data
 }
 
-const createPurchaseDetail = async ( id, purchaseDetailObj ) => {
-    return await table 
+const createPurchaseDetail = async ( purchaseDetailObj ) => {
+    const data = PurchasesDetail.create(purchaseDetailObj)
+    return data
 }
 
-const actualizePurchaseDetail =  async ( id, purchaseDetailObj ) => {
-    return await table 
-}
-
-const actualizePartialPurchaseDetail = async ( id, purchaseDetailObj ) => {
-    return await table 
+const updatePurchaseDetail =  async ( id, purchaseDetailObj ) => {
+    const data = PurchasesDetail.update( purchaseDetailObj, {
+        where:{
+            id
+        }
+    } )
+    return await data[0] 
 }
 
 const deletePurchaseDetail = async ( id ) => {
-    return await table 
+    const data  = PurchasesDetail.destroy( id )
+    return await data
 }
 
 module.exports = {
     findAllPurchasesDetail,
     findPurchaseDetailById,
     createPurchaseDetail,
-    actualizePurchaseDetail,
-    actualizePartialPurchaseDetail,
+    updatePurchaseDetail,
     deletePurchaseDetail
 }

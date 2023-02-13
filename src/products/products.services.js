@@ -2,37 +2,57 @@ const productsController = require( './products.controllers' )
 
 const getAllProducts = (req, res) => {
   productsController.findAllProducts()
-    .then( data => res.status(200).json({data}) )
+    .then( data => res.status(200).json(data) )
     .catch( err => res.status(400).json(data) )
 }
 
 const getProductById = (req, res) => {
-  productsController.findProductById()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  productsController.findProductById(id)
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Product not found"}) 
+    )
     .catch( err => res.status(400).json(data) )
 }
 
 const postProduct = (req, res) => {
-  productsController.createProduct()
-    .then( data => res.status(201).json({data}) )
+  const productObj = req.body
+  productsController.createProduct(productObj)
+    .then( data => res.status(201).json(data)
+    )
     .catch( err => res.status(400).json(data) )
 }
 
 const putProduct = (req, res) => {
-  productsController.actualizeProduct()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  const productObj = req.body
+  productsController.actualizeProduct( id, productObj )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Product not found"}) 
+    )
     .catch( err => res.status(400).json(data) )
 }
 
 const PatchProduct = (req, res) => {
-  productsController.actualizePartialProduct()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  const productObj = req.body
+  productsController.actualizePartialProduct( id, productObj )
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Product not found"}) 
+    )
     .catch( err => res.status(400).json(data) )
 }
 
 const deleteProduct = (req, res) => {
-  productsController.deleteProduct()
-    .then( data => res.status(200).json({data}) )
+  const id = req.params.id
+  productsController.deleteProduct( id )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Product not found"}) 
+    )
     .catch( err => res.status(400).json(data) )
 }
 

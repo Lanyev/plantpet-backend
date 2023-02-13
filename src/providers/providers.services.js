@@ -2,38 +2,58 @@ const providersController = require( './providers.controllers' )
 
 const getAllProviders = (req, res) => {
   providersController.findAllProviders()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+    .then( data => res.status(200).json(data) )
+    .catch( err => res.status(400).json(err) )
 }
 
 const getProviderById = (req, res) => {
-  providersController.findProviderById()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  providersController.findProviderById(id)
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const postProvider = (req, res) => {
-  providersController.createProvider()
-    .then( data => res.status(201).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const providerObj = req.body
+  providersController.createProvider(providerObj)
+    .then( data => res.status(201).json(data)
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const putProvider = (req, res) => {
-  providersController.actualizeProvider()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  const providerObj = req.body
+  providersController.actualizeProvider( id, providerObj )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const PatchProvider = (req, res) => {
-  providersController.actualizePartialProvider()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  const providerObj = req.body
+  providersController.actualizePartialProvider( id, providerObj )
+    .then( data => data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 const deleteProvider = (req, res) => {
-  providersController.deleteProvider()
-    .then( data => res.status(200).json({data}) )
-    .catch( err => res.status(400).json(data) )
+  const id = req.params.id
+  providersController.deleteProvider( id )
+    .then( data =>  data ?
+      res.status(200).json(data):
+      res.status(404).json({message: "Provider not found"}) 
+    )
+    .catch( err => res.status(400).json(err) )
 }
 
 module.exports = {
