@@ -2,16 +2,11 @@ const { DataTypes } = require("sequelize");
 
 const db = require("../utils/database");
 
-const Categories = db.define("categories", {
+const Categories = db.define("category", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-    references:{
-      model: "users",
-      key: "idRol"
-    }
-  },
+    type: DataTypes.UUID,
+    primaryKey: true
+  },  
   name: {
     type: DataTypes.STRING,
     allowNull: false,

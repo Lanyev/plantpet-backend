@@ -8,7 +8,7 @@ values
 	('Vendedor', '01/31/2023', '01/31/2023');
 	
 insert into permissions  
-	(  "idRol", "name", "created_at", "updated_at")
+	(   id_rol , "name", "created_at", "updated_at")
 values
 	--Administrador
 	( 1, 'categories', '01/31/2023', '01/31/2023'),
@@ -52,7 +52,7 @@ values
 	( 5, 'sales_details', '01/31/2023', '01/31/2023');
 	
 insert into users 
-	( "idRol", first_name, last_name, email, "password", phone, "created_at", "updated_at")
+	( id_rol, first_name, last_name, email, "password", phone, "created_at", "updated_at")
 values
 	( 1, 'Julio Cesar', 'Sanchez Marquez', 'julio930911@gmail.com', 'julio_11231a', '+526731032406', '01/31/2023', '01/31/2023'),
 	( 2, 'Irving Adrian', 'Urias', 'guerorolloficial@hotmail.com', '1234567890', '+526731166867', '01/31/2023', '01/31/2023'),
@@ -65,59 +65,62 @@ values
 	( 'Botellas', '01/31/2023', '01/31/2023' );
 
 insert into products 
-	( "idCategory", codigo, "name", description, stock, purchase_price, sale_price, "created_at", "updated_at" )
+	( id_category, codigo, "name", description, stock, purchase_price, sale_price, "created_at", "updated_at" )
 values
-	( 1, 'BT-28-400-0250-000', '250 ml', 'Bulto de 0 botellas de 250 ml', 0, 0, 0, '02/01/2023' ),
-	( 1, 'BT-28-400-0600-000', '600 ml', 'Bulto de 0 botellas de 600 ml', 0, 0, 0, '02/01/2023' ),
-	( 1, 'BT-28-400-0500-030', '500 ml', 'Bulto de 30 botellas de 500 ml', 0, 50.00, 290.00, '02/01/2023' ),
-	( 1, 'BT-28-400-0500-060', '500 ml', 'Bulto de 60 botellas de 500 ml', 37, 100.00, 290.00, '02/01/2023' ),
-	( 1, 'BT-28-400-0500-150', '500 ml', 'Bulto de 150 botellas de 500 ml', 43, 248.50, 290.00, '02/01/2023' ),
-	( 1, 'BT-28-400-1000-104', '1000 ml', 'Bulto de 104 botellas de 1000 ml', 70, 248.50, 290.00, '02/01/2023' ),
-	( 1, 'BT-28-400-1500-000', '1500 ml', 'Bulto de 0 botellas de 1500 ml', 0, 0, 0, '02/01/2023' );
+	( 1, 'BT-28-400-0250-000', '250 ml', 'Bulto de 0 botellas de 250 ml', 0, 0, 0, '02/01/2023', '02/01/2023' ),
+	( 1, 'BT-28-400-0600-000', '600 ml', 'Bulto de 0 botellas de 600 ml', 0, 0, 0, '02/01/2023', '02/01/2023' ),
+	( 1, 'BT-28-400-0500-030', '500 ml', 'Bulto de 30 botellas de 500 ml', 0, 50.00, 290.00, '02/01/2023', '02/01/2023' ),
+	( 1, 'BT-28-400-0500-060', '500 ml', 'Bulto de 60 botellas de 500 ml', 37, 100.00, 290.00, '02/01/2023', '02/01/2023' ),
+	( 1, 'BT-28-400-0500-150', '500 ml', 'Bulto de 150 botellas de 500 ml', 43, 248.50, 290.00, '02/01/2023', '02/01/2023' ),
+	( 1, 'BT-28-400-1000-104', '1000 ml', 'Bulto de 104 botellas de 1000 ml', 70, 248.50, 290.00, '02/01/2023', '02/01/2023' ),
+	( 1, 'BT-28-400-1500-000', '1500 ml', 'Bulto de 0 botellas de 1500 ml', 0, 0, 0, '02/01/2023', '02/01/2023' );
 
 insert into providers 
 	( codigo, "name", "created_at", "updated_at" )
 values
-	( 'PRE-1', 'KIM PET', '02/01/2023' ),
-	( 'ENV-1', 'TINY PACK', '02/01/2023' ),
-	( 'BOL-1', 'PLASTICOS Y RESINAS', '02/01/2023' ),
-	( 'TAP-1', 'INYECCION PLASTICA', '02/01/2023' ),
-	( 'TAP-2', 'TAPANOSA', '02/01/2023' ),
-	( 'TAP-3', 'PLASTIMAS', '02/01/2023' );
+	( 'PRE-1', 'KIM PET', '02/01/2023', '02/01/2023' ),
+	( 'ENV-1', 'TINY PACK', '02/01/2023', '02/01/2023' ),
+	( 'BOL-1', 'PLASTICOS Y RESINAS', '02/01/2023', '02/01/2023' ),
+	( 'TAP-1', 'INYECCION PLASTICA', '02/01/2023', '02/01/2023' ),
+	( 'TAP-2', 'TAPANOSA', '02/01/2023', '02/01/2023' ),
+	( 'TAP-3', 'PLASTIMAS', '02/01/2023', '02/01/2023' );
 
 insert into customers 
 	( codigo, "name","created_at", "updated_at" )
 values
-	( 'ND-1', 'New Delhi', '02/01/2023' ),
-	( 'GR-1', 'Güero Roll', '02/01/2023' ),
-	( 'FS-1', 'Food Service', '02/01/2023' );
+	( 'ND-1', 'New Delhi', '02/01/2023', '02/01/2023' ),
+	( 'GR-1', 'Güero Roll', '02/01/2023', '02/01/2023' ),
+	( 'FS-1', 'Food Service', '02/01/2023', '02/01/2023' );
 
 --insert into provider_info 
---	( "idProvider", email, phone, acount, tax_certificate )
+--	( "id_provider", email, phone, acount, tax_certificate )
 --values
 --	(  );
 
 --insert into customer_info  
---	( "idCustomer" , email, phone, acount, tax_certificate )
+--	( "id_customer" , email, phone, acount, tax_certificate )
 --values
 --	(  );
 
 --insert into purchases 
---	( "idProvider", "idUser", invoice, total_amount, "created_at", "updated_at" )
+--	( "id_provider", "id_user", invoice, total_amount, "created_at", "updated_at" )
 --values
 --	( 1, 1, 'N/A', 50.00 '02/01/2023' );
 
 --insert  into sales 
---	( "idUser", "idCustomer", invoice, total_amount, "created_at", "updated_at" )
+--	( "id_user", "id_customer", invoice, total_amount, "created_at", "updated_at" )
 --values
 --	( 1, 1, 'N/A', 50.00 '02/01/2023' );
 
 --insert into purchases_detail 
---	( "idPurchase", "idProduct", sub_total, "created_at", "updated_at" )
+--	( "id_purchase", "id_product", sub_total, "created_at", "updated_at" )
 --values
---	( 1, 1, 50.00, '02/01/2023' );
+--	( 1, 1, 50.00, '02/01/2023', '02/01/2023' );
 
 --insert into sales_details  
---	( "idSale" , "idProduct" , sub_total, "created_at", "updated_at" )
+--	( "id_sale" , "id_product" , sub_total, "created_at", "updated_at" )
 --values
---	( 1, 1, 50.00, '02/01/2023' )
+--	( 1, 1, 50.00, '02/01/2023', '02/01/2023' )
+	
+
+

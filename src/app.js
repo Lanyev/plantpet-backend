@@ -1,12 +1,12 @@
 const express = require('express')
-const db = require('./utils/database')
-const apiRouter = require( './api_v1/apiV1.router' )
-const path = require( 'path' )
 
+const db = require('./utils/database')
+const apiV1Router = require( './routers/index.router' )
+const {referencesInit} = require( './models/index.models' )
+const {api:{port, host}} = require( '../config' )
+const passportJWT = require( './middlewares/auth.meddleware' )
 
 const app = express()
-const PORT = 9000
-
 app.use(express.json())
 
 db.authenticate() //? Mostrar en consola 
@@ -17,13 +17,22 @@ db.sync() //? Sincronizar nuesta DB con los modelos que tenemos definidos
   .then( () => console.log('La base de datos de virus ha sido actualizada') )
   .catch( err => console.log(err) ) //! Error en las tablas, propiedades, etc.
 
-require('dotenv').config()
+referencesInit()
 
 app.get( '/', ( req, res ) => {
-  const archivo = req.params.string
   res.sendFile( 'D:\\plantpet-backend\\public\\pages\\index.html' )
 })
+//?-----------------------------------------------
 
-app.use( "/api/v1", apiRouter )
+app.get( '/protected', 
+passportJWT,
+( req, res ) =>{
+  res.status(200).json( {
+      message:'Solo puedes ver esto si estás autenticado'
+  } )
+})
 
-app.listen( PORT, () => console.log(`Listen1 on port: ${PORT}`) )
+//?-----------------------------------------------
+app.use( "/api/v1", apiV1Router )
+
+app.listen( port, () => console.log(`Listen1 on: ${host}`) )
