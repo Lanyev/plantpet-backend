@@ -3,12 +3,11 @@ const db = require("../utils/database");
 
 const Products = db.define("products", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+    type: DataTypes.UUID,
+    primaryKey: true
   },
   idCategory: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.UUID,
     allowNull: false,
   },
   codigo: {
@@ -27,11 +26,11 @@ const Products = db.define("products", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  purchase_price: {
+  purchasePrice: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },
-  sale_price: {
+  salePrice: {
     type: DataTypes.DECIMAL(10, 2),
     allowNull: false,
   },

@@ -3,9 +3,8 @@ const db = require("../utils/database");
 
 const Permissions = db.define("permissions", {
   id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
+    type: DataTypes.UUID,
+    primaryKey: true
   },
   idRol: {
     type: DataTypes.INTEGER,
